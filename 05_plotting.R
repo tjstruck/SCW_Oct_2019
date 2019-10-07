@@ -28,5 +28,32 @@ plot(aus_gdpPercap, aus_lifeExp)
 # Histogram
 #Plot will default to a scatterplot, but if you want a histogram then you need to use the type argument.
 plot(aus_lifeExp, type = 'h')
-
 #plot(aus_lifeExp[aus_lifeExp>mean(aus_lifeExp)], type = 'h')
+
+
+#Boxplot
+#To make a boxplot, you can use the function boxplot(x ~ y, data = dataframe). 
+#Let’s plot life expectancy as a function of continent
+boxplot(lifeExp ~ continent, data = gapminder)
+
+#Factors are basically character data that is assigned interger values
+#This helps save on memory
+gapminder$country[10:15]
+str(gapminder$country[10:15])
+
+#If you ever want to change what order the categories on the x-axis are displayed in 
+#you would need to order the factor levels of that column.
+
+#Plotting in base R can be flexible and you can actually do a lot with it, 
+#but many people find ggplot more user friendly and easier to learn. 
+#Let’s move on and learn how to do these plots using the ggplot package. 
+#Whichever you decide to use, there is a lot of help online if you need it.
+
+#EXERCISE
+#Pull up the plot help page. What arguments would you use to change the x and y axis label?
+
+#Change the axes labels for the first graph we did.
+
+
+
+
