@@ -1,6 +1,20 @@
-getwd()
-setwd("~/SWC_Oct_2019") #Need to figure out directory structor for real workshop
-getwd()
+
+
+# Set up Git project in R
+# File -> new project -> Version Control -> Git -> Repository URL from GIT Page
+# File -> New File -> R Script
+# create headers
+
+########
+# Name
+# Date
+# Contact Info
+########
+
+# Save script
+# show git tab on right toolbar
+# show how to check staged, commit, write commit message, then push and review what these steps mean
+
 
 #How to load the data
 # read.csv() read.delim()
