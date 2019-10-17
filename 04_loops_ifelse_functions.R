@@ -1,4 +1,11 @@
+# Explain the basics components of a loop and what it's doing
+for(i in 1:10){
+  print(i)
+}
+
+
 #Quick for loop example
+
 #Loops take an empty variable, define it as en element from a list/vector
 for(cont in unique(gapminder$continent)){
   life.min <- min(gapminder[gapminder$continent == cont, 'lifeExp'])
