@@ -1,58 +1,213 @@
-# Scatterplot
-#The basic plot function is plot(x, y, ….) which x corresponding to your x-variable and y to the y-variable.
-#Let’s plot sepal length as a function of petal length.
+# This lesson is based on SCW's 
+# R for Reproducible Scientific Analysis, lesson 08
+# http://swcarpentry.github.io/r-novice-gapminder/08-plot-ggplot2/index.html
+
+#How to install a new package
+install.packages("ggplot2")
+
+#Don't forget to load the package so we can use its functionality
+library(ggplot2)
+
+setwd("~/SCW_R_Oct_2019")
 
 
-plot(gapminder$gdpPercap, gapminder$lifeExp)
-#How useful is looking at all the data?
+gapminder = read.table(file = "data/gapminder.txt", header=TRUE, sep = "\t")
 
-#How can we look at a subset of the data?
-cont <- 'Europe'
-euro_lifeExp <- gapminder[gapminder$continent == cont, 'lifeExp']
-euro_gdpPercap <- gapminder[gapminder$continent == cont, 'gdpPercap']
-plot(euro_gdpPercap, euro_lifeExp)
+?ggplot
+# ggplot2 is built on the grammar of graphics, the idea that any plot can be expressed from the same set of components: 
+# a data set, 
+# a coordinate system, 
+# and a set of geoms–the visual representation of data points.
 
-#How can we look at a subset of the data?
-contry <- 'Australia'
-aus_lifeExp <- gapminder[gapminder$country == contry, 'lifeExp']
-aus_gdpPercap <- gapminder[gapminder$country == contry, 'gdpPercap']
-plot(aus_gdpPercap, aus_lifeExp)
+ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp)) +
+  geom_point()
 
-#We see a scatterplot that shows there is a positive association between sepal and petal length. 
-#To add a linear regression line, you would need to use two commands abline() and lm(). lm() is used to fit linear models and 
-#uses the arguments lm(y ~ x), while abline will actually fit a line to the most recent plot. Let’s try it out.
+# Breaking down ggplot
+# 1. ggplot wants to know the data set to use
+# 2. ggplot wants to know what varibles to use and how to display them with aes or aesthetic
+#     Note that ggplot knows that gdpPercap and lifeExp parts of the gapminder data set
+#     So we don't need to use something like x = gapminder[, "gdpPercap"]
+# 3. ggplot needs to know how you want to visualize the data
 
-#check with group
-#abline(lm(euro_gdpPercap ~ euro_lifeExp))
+# Challange:
+# How would we look at life expectancy overtime with ggplot
 
-# Histogram
-#Plot will default to a scatterplot, but if you want a histogram then you need to use the type argument.
-plot(aus_lifeExp, type = 'h')
-#plot(aus_lifeExp[aus_lifeExp>mean(aus_lifeExp)], type = 'h')
+# Answer:
+ggplot(data = gapminder, mapping = aes(x = year, y = lifeExp)) +
+  geom_point()
+
+# What does this plot tell us?
+# Life expectancy looks like it overall goes up.
+# Do the students have an idea how to make it more useful?
+
+# Challange:
+# Try to add color
+# There is a color argument for the aes function
+# You can can tell ggplot to color by continent
+
+# Answer:
+ggplot(data = gapminder, mapping = aes(x = year, y = lifeExp, color = continent)) +
+  geom_point()
+# What does this tell us now?
+# Note: Each point is a different country that falls under each continent
+
+# Let's try to diplay this in a different way
+# for geom_line() we want to tell ggplot how the lines should be connected
+# in this case, by countries
+ggplot(data = gapminder, mapping = aes(x=year, y=lifeExp, by=country, color=continent)) +
+  geom_line()
+
+# We can combine two forms of visualization
+ggplot(data = gapminder, mapping = aes(x=year, y=lifeExp, by=country, color=continent)) +
+  geom_line() + geom_point()
+
+# We can be selective about additional arguments based on type of visualization
+ggplot(data = gapminder, mapping = aes(x=year, y=lifeExp, by=country)) +
+  geom_line(mapping = aes(color=continent)) + geom_point()
+# The ase arguments in the first part are gloable, and will apply to everything you plot
+# The ase arguments in geom_...() are specific to that piece of the visualization
+# In this way ggplot is like a plot with various layers
+
+# Challenge:
+# Switch the order of the geom_ functions
+# What happened?
+
+# Answer:
+ggplot(data = gapminder, mapping = aes(x=year, y=lifeExp, by=country)) +
+  geom_point() + geom_line(mapping = aes(color=continent))
 
 
-#Boxplot
-#To make a boxplot, you can use the function boxplot(x ~ y, data = dataframe). 
-#Let’s plot life expectancy as a function of continent
-boxplot(lifeExp ~ continent, data = gapminder)
+# Let do some stats in our plots!
 
-#Factors are basically character data that is assigned interger values
-#This helps save on memory
-gapminder$country[10:15]
-str(gapminder$country[10:15])
+ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp)) +
+  geom_point()
 
-#If you ever want to change what order the categories on the x-axis are displayed in 
-#you would need to order the factor levels of that column.
+# Let's first make the relationship easier to visualize
+ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp)) +
+  geom_point(alpha = 0.5) + scale_x_log10()
+# alpha controls the opaquness of the points from geom_point
+# scale_x_log10() makes the plot's x-axis on a log scale instead of linear
 
-#Plotting in base R can be flexible and you can actually do a lot with it, 
-#but many people find ggplot more user friendly and easier to learn. 
-#Let’s move on and learn how to do these plots using the ggplot package. 
-#Whichever you decide to use, there is a lot of help online if you need it.
+# Tip
+# alpha can be based on the country by using:
+# geom_point(mapping = aes(alpha = continent))
+ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp, alpha = continent)) +
+  geom_point() + scale_x_log10()
 
-#EXERCISE
-#Pull up the plot help page. What arguments would you use to change the x and y axis label?
+#But let's not
+ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp)) +
+  geom_point(alpha = 0.5) + scale_x_log10()
 
-#Change the axes labels for the first graph we did.
+# Let's fit a linear model to the data!
+ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp)) +
+  geom_point() + scale_x_log10() + geom_smooth(method="lm")
+
+# We can alter the line for the linear model
+# For example, the lines thickness
+ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp)) +
+  geom_point() + scale_x_log10() + geom_smooth(method="lm", size=1.5)
+
+# Note:
+# We are not using ase for changing the size
+
+# Challenge:
+# Change the color and size of the points outside of ase
+
+# Note:
+?geom_point
+
+# Answer:
+ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp)) +
+  geom_point(size=3, color="green") + scale_x_log10() +
+  geom_smooth(method="lm", size=1.5)
+
+# Challange:
+# Now change the shape of the points and
+# color the points by the continent
+# Note:
+# You'll get multiple linear model fits
+
+# Note:
+?geom_point
+
+# Answer:
+ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp, color = continent)) +
+  geom_point(size=3, shape=17) + scale_x_log10() +
+  geom_smooth(method="lm", size=1.5)
+
+
+# Let's do some plots with subplots!
+# The life expectancy data was very cluttered
+# Perfect for breaking up into multiple plots!
+# We'll start with just American countries so we don't have too many subplots
+americas <- gapminder[gapminder$continent == "Americas",]
+ggplot(data = americas, mapping = aes(x = year, y = lifeExp)) +
+  geom_line() + 
+  facet_wrap( ~ country) + 
+  theme(axis.text.x = element_text(angle = 45))
+?facet_wrap
+# facet_wrap makes ggplot do subplots based on the country within americas
+?theme
+# theme lets us modify the text on the plot to make it easier to read
+# Would you see this in a research paper?
+#y-axis lable says "lifeExp"
+#
+
+# More text modification!
+ggplot(data = americas, mapping = aes(x = year, y = lifeExp, color=continent)) +
+  geom_line() + facet_wrap( ~ country) +
+  labs(
+    x = "Year",              # x axis title
+    y = "Life expectancy",   # y axis title
+    title = "Figure 1",      # main title of figure
+    color = "Continent"      # title of legend
+  ) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+# labs function allows for us to specify the figure text
+
+# Let's save our work!
+# We can put the plot into a varible and then use the ggsave function to save the plot
+lifeExp_plot <- ggplot(data = americas, mapping = aes(x = year, y = lifeExp, color=continent)) +
+  geom_line() + facet_wrap( ~ country) +
+  labs(
+    x = "Year",              # x axis title
+    y = "Life expectancy",   # y axis title
+    title = "Figure 1",      # main title of figure
+    color = "Continent"      # title of legend
+  ) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+
+ggsave(filename = "results/lifeExp.png", plot = lifeExp_plot, width = 12, height = 10, dpi = 300, units = "cm")
+# R will not want to save a file if a directory already exists
+# We can use R to make a directory like we did in Unix
+# dir.create(file.path('~/SCW_R_Oct_2019/', 'results'))
+# If the directory is already made, R will cause a running to script crash
+# So we add an argument showWarnings = FALSE
+dir.create(file.path('~/SCW_R_Oct_2019/', 'results'), showWarnings = FALSE)
+# Let's comment out the 
+# dir.create(file.path('~/SCW_R_Oct_2019/', 'results'))
+
+ggsave(filename = "results/lifeExp.png", plot = lifeExp_plot, width = 12, height = 10, dpi = 300, units = "cm")
+
+
+# Cheat sheet for ggplot:
+# https://rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf
+
+# Challenge!
+# Create a density plot of GDP per capita, filled by continent.
+# 
+# Advanced:
+# Transform the x axis to better visualise the data spread.
+# Add a facet layer to panel the density plots by year.
+
+# Answer:
+ggplot(data = gapminder, mapping = aes(x = gdpPercap, fill=continent)) +
+  geom_density(alpha=0.6)# + facet_wrap( ~ year) + scale_x_log10()
+# Advanced answer:
+ggplot(data = gapminder, mapping = aes(x = gdpPercap, fill=continent)) +
+  geom_density(alpha=0.6) + facet_wrap( ~ year) + scale_x_log10()
+
 
 
 
