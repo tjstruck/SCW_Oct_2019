@@ -1,5 +1,10 @@
+#Welcome to the R portion of the Software Carpentry workshop.
+
+#Throughout this lesson, we’re going to teach you some of the fundamentals of the R language as well as some best practices 
+#for organizing code for scientific projects that will make your life easier.
+
 #intro - why learn R
-#dataframes and data anaylsis
+#dataframes, data anaylsis and plotting
 
 # What is R? 
 
@@ -19,9 +24,21 @@
 
 # Often, learning a programming language is made worse by an unintuitive and unhelpful user interface.  
 # For our workshop, we will be using RStudio, a graphical user interface (front-end) for R that is slightly more user-friendly than ‘Classic’ R’s GUI.
+#We’ll be using RStudio: a free, open source R integrated development environment. 
+#It provides a built in editor, works on all platforms (including on servers) 
+#and provides many advantages such as integration with version control and project management.
+
+#Basic layout
+
+#When you first open RStudio, you will be greeted by three panels:
+
+#The interactive R console (entire left)
+#Environment/History (tabbed in upper right)
+#Files/Plots/Packages/Help/Viewer (tabbed in lower right)
 
 # The console window  
-
+#Much of your time in R will be spent in the R interactive console. This is where you will run all of your code, 
+#and can be a useful environment to try out ideas before adding them to an R script file
 # There are some useful features available in the console:
 
 # * Use the UP arrow to see past commands you have typed
