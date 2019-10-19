@@ -1,12 +1,21 @@
 # Explain the basics components of a loop and what it's doing
+# Loops take an empty variable, define it as en element from a list/vector
 for(i in 1:10){
   print(i)
 }
 
+# Loops can be inside loops
+for(i in 1:3){
+  for(j in c('a','b','c')){
+      print(paste(i,j)) #Because of datatype limitations, 
+                        #we need to use the paste function, 
+                        #which converts data to characters concatinates it with a space between elements
+}
+}
 
 #Quick for loop example
+gapminder = read.table(file = "data/gapminder.txt", header=TRUE, sep = "\t")
 
-#Loops take an empty variable, define it as en element from a list/vector
 for(cont in unique(gapminder$continent)){
   life.min <- min(gapminder[gapminder$continent == cont, 'lifeExp'])
   life.max <- max(gapminder[gapminder$continent == cont, 'lifeExp'])
@@ -26,14 +35,12 @@ for(blah in unique(gapminder$continent)){
 # Exercise
 
 #Let's try out a for loop 
-#In this exercise, we want to make a vector that contains the square roots of the integers from the vector below. 
-loop.vector <- c(1,4,9,16,25,36,49,64,81,100)
-
+#In this exercise, we want to make a vector that contains the square of the integers from a vector 
 m <- c()
 m
-for (i in loop.vector){
-  m = c(m,sqrt(i))
-  # print(m)
+for (i in 1:5){
+  m = c(m,i^2)
+  print(m)
 }
 print(m)
 
@@ -52,19 +59,6 @@ print(m)
 x <- 5
 if (x > 0) {
   print('Positive number')
-}
-#Here, `x > 0` is `TRUE`, so the if statement is executed, and the statement is printed.
-#Let's try this with the gapminder dataset. The world mean life expectancy is 71.5 years. 
-
-
-#Combining loops with if ... else
-gapminder %>% select(lifeExp) %>% summarize(mean = mean(lifeExp))
-meanLifeExp <- mean(gapminder$lifeExp)
-#Let's have a `'Greater than avg.'` statement returned if the value within the 'lifeExp' col exceeds that.
-for(x in gapminder$lifeExp){
-  if(x > meanLifeExp){
-    print(paste0(x, ' is greater than avg.'))
-  }
 }
 
 
@@ -90,6 +84,16 @@ if(x > 0) {
   print('Zero')
 }
 
+# We can combine loops with if else statments to help filter for specific data
+for(x in c(-5,-3,0,1,5)){
+  if(x > 0) {
+    print(paste(x,'Positive number'))
+  } else if (x < 0) {
+    print(paste(x,'Negative number'))
+  } else {
+    print(paste(x,'Zero'))
+  }
+}
 
 # Multiple choice and an exercise
 
@@ -106,3 +110,41 @@ if(x > 0) {
 
 # How could you change the code so that if x is less than 0 you get a message saying 'x is
 # less than zero'? 
+
+
+
+#Here, `x > 0` is `TRUE`, so the if statement is executed, and the statement is printed.
+#Let's try this with the gapminder dataset. The world mean life expectancy is 71.5 years. 
+
+
+#Combining loops with if ... else
+meanLifeExp <- mean(gapminder$lifeExp)
+#Let's have a `'Greater than avg.'` statement returned if the value within the 'lifeExp' col exceeds that.
+for(x in gapminder$lifeExp){
+  if(x > meanLifeExp){
+    print(paste0(x, ' is greater than avg.'))
+  }
+}
+
+
+# Challenge
+# Write a script that loops through the gapminder data by continent and prints out whether the mean life expectancy 
+# is smaller or larger than 50 years.
+
+# Answer
+for(cont in unique(gapminder$continent)){
+  if(mean(gapminder[gapminder$continent == cont, 'lifeExp']) > meanLifeExp){
+    print(paste(cont, 'lifeExp is above average'))
+  }
+  else if (mean(gapminder[gapminder$continent == cont, 'lifeExp']) < meanLifeExp){
+    print(paste(cont, 'lifeExp if below average'))
+  }
+  else{
+    print(paste(cont, 'lifeExp is average'))
+  }
+}
+
+
+
+
+
