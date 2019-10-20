@@ -40,7 +40,7 @@ ggplot(data = gapminder, mapping = aes(x = year, y = lifeExp)) +
 # Life expectancy looks like it overall goes up.
 # Do the students have an idea how to make it more useful?
 
-# Challange:
+# Challenge:
 # Try to add color
 # There is a color argument for the aes function
 # You can can tell ggplot to color by continent
@@ -111,7 +111,7 @@ ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp)) +
 # We are not using ase for changing the size
 
 # Challenge:
-# Change the color and size of the points outside of ase
+# Change the color and size of the points outside of aes
 
 # Note:
 ?geom_point
