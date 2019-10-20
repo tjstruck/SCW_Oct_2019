@@ -157,11 +157,6 @@ x+y
 #D. [1] 5  
 
 
-
-
-
-
-
 # 4 Data Structures
 #motivation go through the data structure in R, give you guys some examples
 # 1. Atomic Vector
@@ -170,7 +165,7 @@ x+y
 # 4. Data Frame
 
 # Atomic Vectors
-#A object that hold that holds multiple pieces of information
+#A object that holds multiple pieces of information
 1:10
 -1:-3
 num_vector <- 1:5
