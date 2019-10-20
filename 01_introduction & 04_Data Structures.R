@@ -109,13 +109,37 @@ dog
 #now R has a definition for dog and it no longer causes an error.
 #R doesn't need varible to make sense
 #But it is a good idea to have the varible make sense, so you and others can follow what your code does
+typeof(dog)
+class(dog)
+
+# How to find help in R or you can type the function in serach box under the help tab or google it
+?class()
 
 #What’s a good name for my new object?
+
+#Variable names can contain letters, numbers, underscores and periods. They cannot start with a number nor contain spaces at all. 
+#Different people use different conventions for long variable names, these include
+
+#periods.between.words
+#underscores_between_words
+#camelCaseToSeparateWords
+
 #Something memorable (!) and not easily-confused with other objects, e.g. X isn’t a good choice if you already have x
 #Names must start with a letter or period (”.”), after that any letter, number or period is okay
 #Avoid other characters; they get interpreted as math (”-”,”*”) or are hard to read (” ”) so should not be used in names
 #Avoid names of existing functions – e.g. summary. Some oneletter choices (c, C, F, t, T and S) are already used by R as names of functions, it’s best to avoid these too
 
+#exercise
+#Which of the following are valid R variable names?
+
+#min_height
+#max.height
+#_age
+#.mass
+#MaxLength
+#min-length
+#2widths
+#celsius2kelvin
 
 x <- 3
 y <- 2
@@ -132,11 +156,7 @@ x+y
 #C. [1] 20.4   
 #D. [1] 5  
 
-typeof(dog)
-class(dog)
 
-# How to find help in R or you can type the function in serach box under the help tab or google it
-?class()
 
 
 
