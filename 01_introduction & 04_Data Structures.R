@@ -109,6 +109,11 @@ dog
 #now R has a definition for dog and it no longer causes an error.
 #R doesn't need varible to make sense
 #But it is a good idea to have the varible make sense, so you and others can follow what your code does
+typeof(dog)
+class(dog)
+
+# How to find help in R or you can type the function in serach box under the help tab or google it
+?class()
 
 #What’s a good name for my new object?
 
@@ -124,6 +129,7 @@ dog
 #Avoid other characters; they get interpreted as math (”-”,”*”) or are hard to read (” ”) so should not be used in names
 #Avoid names of existing functions – e.g. summary. Some oneletter choices (c, C, F, t, T and S) are already used by R as names of functions, it’s best to avoid these too
 
+#exercise
 #Which of the following are valid R variable names?
 
 #min_height
@@ -150,11 +156,7 @@ x+y
 #C. [1] 20.4   
 #D. [1] 5  
 
-typeof(dog)
-class(dog)
 
-# How to find help in R or you can type the function in serach box under the help tab or google it
-?class()
 
 
 
