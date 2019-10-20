@@ -1,3 +1,37 @@
+#Explore the dataframe
+cats <- data.frame(coat = c("calico", "black", "tabby"), 
+                    weight = c(2.1, 5.0, 3.2), 
+                    likes_string = c(1, 0, 1))
+write.csv(x = cats, file = "data/feline-data.csv", row.names = FALSE)
+
+cats <- read.csv(file = "data/feline-data.csv")
+cats
+
+cats$coat
+cats$weight + 2
+#if you want to connect the character, you can use paste() function
+paste("My cat is", cats$coat)
+cats$weight + cats$coat
+# add column into the dataframe
+age <- c(2, 3, 5)
+cats
+cbind(cats, age)
+
+age <- c(2, 3, 5, 12)
+cbind(cats, age)
+
+age <- c(2, 3)
+cbind(cats, age)
+
+nrow(cats)
+
+length(age)
+
+age <- c(2, 3, 5)
+cats <- cbind(cats, age)
+
+#How about adding rows? use rbind()function
+
 #How to load the data
 # read.csv() read.delim()
 gapminder2 <- read.table(file = "data/gapminder.txt", header=TRUE, sep = "\t", stringsAsFactors = FALSE)
