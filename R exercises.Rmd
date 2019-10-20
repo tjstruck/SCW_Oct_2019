@@ -1,0 +1,56 @@
+---
+title: "R Exercises"
+date: "October 27, 2019"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Exercise 1
+> Question here
+
+
+\pagebreak
+### Exercise 1 solution
+```{r}
+
+
+```
+\pagebreak
+
+
+
+
+
+# Exercise 2
+> Question here
+
+
+\pagebreak
+### Exercise 2 solution
+```{r}
+
+
+```
+\pagebreak
+
+
+
+
+
+
+# Exercise 3
+> Question here
+
+
+\pagebreak
+
+### Exercise 3 solution
+```{r}
+
+
+```
+\pagebreak
+
