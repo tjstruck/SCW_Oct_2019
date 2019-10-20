@@ -14,7 +14,7 @@ for(i in 1:3){
 }
 
 #Quick for loop example
-gapminder = read.table(file = "data/gapminder.txt", header=TRUE, sep = "\t")
+gapminder <- read.csv("https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/gh-pages/_episodes_rmd/data/gapminder_data.csv", stringsAsFactors = FALSE)
 
 for(cont in unique(gapminder$continent)){
   life.min <- min(gapminder[gapminder$continent == cont, 'lifeExp'])
@@ -142,8 +142,3 @@ for(cont in unique(gapminder$continent)){
     print(paste(cont, 'lifeExp is average'))
   }
 }
-
-
-
-
-
