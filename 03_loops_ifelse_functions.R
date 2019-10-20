@@ -32,7 +32,6 @@ for(blah in unique(gapminder$continent)){
   print(paste0('The life expectancy in ',blah,' is ',life.min,' to ',life.max))
 }
 
-# Exercise
 
 #Let's try out a for loop 
 #In this exercise, we want to make a vector that contains the square of the integers from a vector 
