@@ -31,25 +31,35 @@ age <- c(2, 3, 5)
 cats <- cbind(cats, age)
 
 #How about adding rows? use rbind()function
-
-#How to load the data
-# read.csv() read.delim()
+#So far, you have been seen the basics of manioulating data frames with our cat data;
+#now let's use those skills to digest a more reallistic dataset. 
+#Let's read in the gapminer dataset that we download previously:
+#let's load the data using read.csv() 
 gapminder2 <- read.table(file = "data/gapminder.txt", header=TRUE, sep = "\t", stringsAsFactors = FALSE)
 gapminder <- read.table(file = "data/gapminder.txt", header=TRUE, sep = "\t")
 #file is the name of the file
 #header indicates whether there is a header in the file. if you don't tell, the header would 123
 # sep is to define the field seperator character. tells what colomns are seperated by.
 
+#Let's investigate gapminder a bit; 
+# The first thing we should always do is to check out what the data looks like
+str(gapminder)
 head(gapminder)
 tail(gapminder)
 nrow(gapminder)
 ncol(gapminder)
 dim(gapminder)
-
-#How to extract specific data from a dataframe
+# We will also likely want to know what the titles of all the columns are
+colnames(gapminder)
+#An additional method for examining the structure of gaominder is to use summary() function. 
+#This function can be used on various objects in R. 
+#For data frames, summary yields a numeric, tabular or descriptive summary of each column
+#Factor columns are summarized by the number of items in each level;
+#numeric, integer columns by the descriptive statistics(quartiles and mean);
+#And character columns by its length, class and mode.
 gapminder
-str()
 summary(gapminder)
+summary(gapminder$country)
 min
 max
 median
@@ -66,6 +76,11 @@ median
 #What is the largest population?
 
 
+#Now lets play with this data more
+#How subset some data from gapminder
+#First, let's get the fisrt column and first row element
+gapminder[1,1] # square bracket will be used to subset the data, 
+#before the comma will be the row you want to get, after the comma will be which column 
 
 #Suppose we were interested in the life expectancy (i.e. 4th column) for 1957 for Afganistan in the years 1952, 1962, and 1977
 #(i.e. rows 1, 3, and 5). How to select these multiple elements?
@@ -79,19 +94,6 @@ gapminder[20:22, 3:4]
 
 #Negative values correspond to dropping those rows/columns;
 gapminder[-3:-1704,] 
-
-#As well as storing numbers and character strings (like "United States", "Canada") R can also store logicals – `TRUE` and `FALSE`.
-#To make a new vector, with elements that are `TRUE` if life expectancy is above 71.5 and FALSE otherwise;
-is.above.avg <- gapminder$lifeExp > 71.5
-
-#Let's see how many of the total were TRUE and how many were FALSE using the table() function.
-#The table() function will create a count table from a vector of categorical data.
-table(is.above.avg)
-
-#Which countries and during what years were these? (And what was the avg. life expectancy?)
-gapminder[is.above.avg,] # just the rows for which is.above.avg is TRUE
-gapminder[is.above.avg,4] # combining TRUE/FALSE (rows) and numbers (columns)
-length(gapminder[is.above.avg,4])
 
 #One final method... for now!
 #Instead of specifying rows/columns of interest by number, or through vectors of `TRUE`s/`FALSE`s, 
