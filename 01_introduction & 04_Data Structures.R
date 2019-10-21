@@ -165,7 +165,9 @@ x+y
 # 4. Data Frame
 
 # Atomic Vectors
-#A object that holds multiple pieces of information
+#A object that holds multiple pieces of information, 
+#is essentially on ordered list of things, with the special condition that everything in the vector mush be the same basic data type
+#if you don't choose the datatype, it will default to logical; or you can define an empty vector of whatever type you like.
 1:10
 -1:-3
 num_vector <- 1:5
@@ -181,8 +183,8 @@ class(char_vector)
 # you can combine different types of data into a vector
 mixed <- c(TRUE, "A")
 mixed
-as.logical(mixed)
-
+#When you looked at the mixed, it said the TRUE is a cha, rather than logical, telling us vector can only hold the same datatype
+#So if you want different datatype stored together in one object, thats called list
 # Lists
 # you use list() to make a list
 my_list <- list(1, "A", TRUE)
@@ -196,7 +198,7 @@ phonebook <- list(name="Asher", phone="111-1111", age=27)
 phonebook["name"]
 
 # Matricies
-# a mtrix is multipe of rows and columns of data
+# a mtrix is multipe of rows and columns of data, holding the same datatype with 2 dimensions
 m <- matrix(nrow=2, ncol=3)
 m
 # give the matrix some data 1 to 6 formated as 2 rows and 3 columns 
@@ -207,7 +209,7 @@ m
 
 # Data Frames
 # As we go through the data structure, it get more complex, vector, list, matrix, 
-# dataframe is the most complex one, and the most common data structure we use in real life
+# dataframe is the most complex one, and the most common data structure we use in real life, each column can hold different datatypes
 df <- data.frame(id=letters[1:10], x=1:10, y=11:20)
 df
 class(df)
