@@ -24,7 +24,7 @@
 
 # Often, learning a programming language is made worse by an unintuitive and unhelpful user interface.  
 # For our workshop, we will be using RStudio, a graphical user interface (front-end) for R that is slightly more user-friendly than ‘Classic’ R’s GUI.
-#We’ll be using RStudio: a free, open source R integrated development environment. 
+#It is a free, open source R integrated development environment. 
 #It provides a built in editor, works on all platforms (including on servers) 
 #and provides many advantages such as integration with version control and project management.
 
