@@ -2,16 +2,20 @@
 # R for Reproducible Scientific Analysis, lesson 08
 # http://swcarpentry.github.io/r-novice-gapminder/08-plot-ggplot2/index.html
 
+# Let learn how to plot data using ggplot and the gapminder data we have been using
+# ggplot is a library for R that produces publication quality plots
+
 #How to install a new package
 install.packages("ggplot2")
 
 #Don't forget to load the package so we can use its functionality
 library(ggplot2)
 
+# Shouldn't need the blow command
 setwd("~/SCW_R_Oct_2019")
 
 
-gapminder = read.table(file = "data/gapminder.txt", header=TRUE, sep = "\t")
+gapminder = read.csv(file = "gapminder_clean.csv")
 
 ?ggplot
 # ggplot2 is built on the grammar of graphics, the idea that any plot can be expressed from the same set of components: 
@@ -184,7 +188,7 @@ ggsave(filename = "results/lifeExp.png", plot = lifeExp_plot, width = 12, height
 # dir.create(file.path('~/SCW_R_Oct_2019/', 'results'))
 # If the directory is already made, R will cause a running to script crash
 # So we add an argument showWarnings = FALSE
-dir.create(file.path('~/SCW_R_Oct_2019/', 'results'), showWarnings = FALSE)
+dir.create(file.path('./', 'results'), showWarnings = FALSE)
 # Let's comment out the 
 # dir.create(file.path('~/SCW_R_Oct_2019/', 'results'))
 

@@ -1,3 +1,7 @@
+# This lesson is based on SCW's 
+# R for Reproducible Scientific Analysis, lesson 07
+# http://swcarpentry.github.io/r-novice-gapminder/07-control-flow/index.html
+
 # Explain the basics components of a loop and what it's doing
 # Loops take an empty variable, define it as en element from a list/vector
 for(i in 1:10){
@@ -132,13 +136,30 @@ for(x in gapminder$lifeExp){
 
 # Answer
 for(cont in unique(gapminder$continent)){
-  if(mean(gapminder[gapminder$continent == cont, 'lifeExp']) > meanLifeExp){
+  if(mean(gapminder[gapminder$continent == cont, 'lifeExp']) > 50){
     print(paste(cont, 'lifeExp is above average'))
   }
-  else if (mean(gapminder[gapminder$continent == cont, 'lifeExp']) < meanLifeExp){
+  else if (mean(gapminder[gapminder$continent == cont, 'lifeExp']) < 50){
     print(paste(cont, 'lifeExp if below average'))
   }
   else{
     print(paste(cont, 'lifeExp is average'))
   }
 }
+
+
+# Cool exercise if we have time
+# Or maybe make as part of the Day 2 Challange?
+# We can use grep in R!
+grep("^B", unique(gapminder$country))
+# The above shows us where country's start with (the "^") a capital B (the "B") are in 
+# the gapminder$country vector
+
+grep("^B", unique(gapminder$country), value=TRUE)
+# Here we see the actual countries that grep finds
+
+
+
+
+
+
